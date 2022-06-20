@@ -40,12 +40,16 @@ def svm_classify(data, C):
     clf = svm.LinearSVC(C=C, dual=False)
     clf.fit(train_data, train_label.ravel())
 
+    
+
     p = clf.predict(test_data)
     test_acc = accuracy_score(test_label, p)
     p = clf.predict(valid_data)
     valid_acc = accuracy_score(valid_label, p)
+    p = clf.predict(train_data)
+    train_acc = accuracy_score(train_label, p)
 
-    return [test_acc, valid_acc]
+    return [test_acc, valid_acc, train_acc]
 
 
 def load_pickle(f):
